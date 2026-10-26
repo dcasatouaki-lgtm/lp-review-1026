@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+<head><meta name="robots" content="noindex">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Clair クレア｜COUGUE</title>
+<meta content="約12〜15mmの白いバロックパールを首元に。着慣れたシャツやニットにも、顔まわりから印象が生まれます。大きいのに、パールだけが先に歩き出さない。装いの中で、私の存在を引き立てる一本です。" name="description"/>
+<style>
+    :root {
+      --ink:#263536;
+      --muted:#707b79;
+      --teal:#23aeb7;
+      --teal-dark:#138b93;
+      --pale:#eaf7f7;
+      --sand:#f7f3ee;
+      --line:#dce4e2;
+      --white:#fff;
+      --shadow:0 18px 48px rgba(38,53,54,.11);
+    }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; color:var(--ink); background:#fff; font-family:"Noto Sans JP","游ゴシック体","メイリオ",YuGothic,"游ゴシック Medium","Yu Gothic Medium","游ゴシック","Yu Gothic",sans-serif; line-height:1.75; }
+    h1,h2,h3,summary { text-wrap:balance; word-break:auto-phrase; line-break:strict; }
+    p,.summary,.benefits span,td { text-wrap:pretty; word-break:auto-phrase; line-break:strict; }
+    .nowrap { white-space:nowrap; }
+    a { color:inherit; text-decoration:none; }
+    button { color:inherit; font:inherit; }
+    img { display:block; width:100%; }
+    .crumb { max-width:1180px; margin:auto; padding:15px 24px; color:#7e8785; font-size:12px; }
+    .product-hero { max-width:1180px; margin:0 auto; padding:12px 24px 78px; display:grid; grid-template-columns:minmax(0,1.05fr) minmax(360px,.72fr); gap:56px; align-items:start; }
+    .gallery { display:grid; grid-template-columns:72px minmax(0,1fr); gap:14px; position:sticky; top:86px; }
+    .thumbs { display:flex; flex-direction:column; gap:9px; max-height:min(70vh,560px); overflow-y:auto; padding-right:4px; scrollbar-width:thin; }
+    .thumb { padding:0; border:1px solid transparent; background:#f3f3f3; cursor:pointer; opacity:.72; }
+    .thumb.active { border-color:var(--ink); opacity:1; }
+    .thumb img { aspect-ratio:1/1; object-fit:cover; }
+    .main-photo { position:relative; overflow:hidden; background:#f2f3f2; }
+    .main-photo img { aspect-ratio:1/1; object-fit:cover; transition:opacity .18s ease; }
+    .photo-label { position:absolute; left:16px; bottom:16px; padding:6px 10px; color:#fff; background:rgba(38,53,54,.74); font-size:11px; letter-spacing:.08em; }
+    .purchase { padding-top:12px; }
+    .eyebrow { margin:0 0 12px; color:var(--teal-dark); font-family:Roboto,Times,serif; font-size:11px; font-weight:700; letter-spacing:.18em; }
+    h1,h2 { font-family:inherit; font-weight:600; letter-spacing:.01em; }
+    h1 { margin:0; font-size:clamp(30px,3.2vw,40px); line-height:1.35; letter-spacing:.03em; }
+    .product-name { margin:15px 0 0; font-size:17px; font-weight:700; line-height:1.6; }
+    .product-code { margin:4px 0 0; color:var(--muted); font-size:12px; }
+    .price-row { display:flex; align-items:baseline; gap:14px; margin:23px 0 4px; }
+    .price { margin:0; font-family:inherit; font-size:30px; line-height:1.2; }
+    .tax { color:var(--muted); font-size:11px; }
+    .points { margin:0 0 22px; color:var(--teal-dark); font-size:12px; font-weight:700; }
+    .benefits { display:grid; grid-template-columns:repeat(3,1fr); border:1px solid var(--line); margin:0 0 22px; }
+    .benefits span { padding:12px 7px; text-align:center; font-size:11px; line-height:1.5; }
+    .benefits span + span { border-left:1px solid var(--line); }
+    .summary { margin:0 0 21px; padding:18px 20px; background:var(--sand); font-size:14px; }
+    .quantity-line { display:flex; align-items:center; justify-content:space-between; margin:0 0 13px; font-size:13px; }
+    .quantity { display:flex; align-items:center; border:1px solid var(--line); }
+    .quantity button,.quantity input { width:38px; height:38px; display:grid; place-items:center; border:0; background:#fff; text-align:center; font:inherit; }
+    .quantity input { width:48px; appearance:textfield; }
+    .quantity input::-webkit-inner-spin-button,.quantity input::-webkit-outer-spin-button { appearance:none; margin:0; }
+    .quantity button { cursor:pointer; }
+    .cta { min-height:56px; display:flex; align-items:center; justify-content:center; width:100%; border:0; color:#fff; background:var(--ink); font-weight:700; letter-spacing:.06em; cursor:pointer; }
+    .cta:hover { background:#142627; }
+    .favorite-btn { min-height:50px; display:flex; align-items:center; justify-content:center; gap:9px; width:100%; margin-top:10px; border:1px solid var(--ink); color:var(--ink); background:#fff; font:inherit; font-size:13px; font-weight:700; cursor:pointer; }
+    .favorite-btn:hover { background:#f6f3ed; }
+    .favorite-btn .favorite-icon { font-size:20px; line-height:1; }
+    .favorite-btn[aria-pressed="true"] .favorite-icon { color:var(--teal-dark); }
+    .sub-cta { min-height:50px; display:flex; align-items:center; justify-content:center; width:100%; margin-top:10px; border:1px solid var(--ink); background:#fff; font-size:13px; font-weight:700; }
+    .microcopy { margin:12px 0 0; color:var(--muted); text-align:center; font-size:11px; }
+    .quick-spec { display:grid; grid-template-columns:1fr 1fr; gap:0; margin-top:26px; border-top:1px solid var(--line); }
+    .quick-spec div { padding:12px 0; border-bottom:1px solid var(--line); }
+    .quick-spec div:nth-child(odd) { padding-right:14px; }
+    .quick-spec small { display:block; color:var(--muted); font-size:10px; }
+    .quick-spec strong { display:block; font-size:13px; }
+    .section { max-width:1120px; margin:auto; padding:86px 24px; }
+    .wide { max-width:none; }
+    .soft { background:var(--pale); }
+    .sand { background:var(--sand); }
+    .inner { max-width:1120px; margin:auto; }
+    h2 { margin:0 0 14px; font-size:clamp(30px,4vw,46px); line-height:1.4; }
+    .section-intro { max-width:720px; margin:0 0 36px; color:var(--muted); }
+    .reason-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+    .reason { display:flex; flex-direction:column; overflow:hidden; background:#fff; border:1px solid var(--line); }
+    .reason img { aspect-ratio:4/3; object-fit:cover; }
+    .reason-copy { flex:1; padding:24px 26px 28px; }
+    .reason-number { color:var(--teal); font-family:Roboto,Times,serif; font-size:26px; }
+    .reason h3 { margin:10px 0 8px; font-size:19px; line-height:1.5; }
+    .reason p { margin:0; color:var(--muted); font-size:14px; }
+    .detail-split { display:grid; grid-template-columns:1fr 1fr; gap:58px; align-items:center; }
+    .detail-split img { aspect-ratio:1/1; object-fit:cover; object-position:67% center; }
+    .detail-copy h2,.story-copy h2 { font-size:clamp(30px,3.2vw,40px); }
+    .detail-copy p { margin:18px 0; }
+    .review-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+    .review { min-width:0; padding:25px; background:#fff; border:1px solid var(--line); }
+    .stars { color:#d6a63f; letter-spacing:.12em; }
+    .review p { margin:12px 0 0; font-family:inherit; font-size:15px; line-height:1.8; }
+    .reviews-section { background:#fff; border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+    .review-heading { display:flex; justify-content:space-between; align-items:end; gap:32px; margin-bottom:30px; }
+    .review-heading h2 { margin-bottom:0; }
+    .review-score { min-width:190px; padding:18px 22px; background:var(--sand); text-align:center; }
+    .review-score strong { display:block; font-size:34px; line-height:1.1; }
+    .review-score .stars { display:block; margin-top:5px; font-size:14px; }
+    .review-score small { display:block; margin-top:4px; color:var(--muted); font-size:11px; }
+    .review-head { display:flex; align-items:center; justify-content:space-between; gap:18px; }
+    .review-meta { color:var(--muted); font-size:11px; white-space:nowrap; }
+    .review-more { margin-top:18px; padding:0; border:0; }
+    .review-more:last-child { border-bottom:0; }
+    .review-more > summary { display:flex; align-items:center; justify-content:center; min-height:54px; padding:12px 20px; border:1px solid var(--ink); cursor:pointer; list-style:none; }
+    .review-more > summary::-webkit-details-marker { display:none; }
+    .review-more > summary::after { content:'＋'; margin-left:12px; font-weight:400; }
+    .review-more[open] > summary::after { content:'−'; }
+    .review-more .review-grid { margin-top:18px; }
+    .story { display:grid; grid-template-columns:.9fr 1.1fr; gap:64px; align-items:center; }
+    .story-image { aspect-ratio:4/5; object-fit:cover; }
+    .story-copy p { margin:17px 0; }
+    .trust { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:32px; }
+    .story .trust { grid-template-columns:1fr; gap:8px; }
+    .trust article { padding:24px 0; border-top:2px solid var(--teal); }
+    .trust h3 { margin:0 0 8px; font-size:17px; }
+    .trust p { margin:0; color:var(--muted); font-size:13px; }
+    .faq { max-width:850px; }
+    details { padding:19px 0; border-top:1px solid var(--line); }
+    details:last-child { border-bottom:1px solid var(--line); }
+    summary { cursor:pointer; font-weight:700; }
+    details p { margin:11px 0 0 22px; color:var(--muted); font-size:14px; }
+    .final { padding:92px 24px; color:#fff; background:var(--ink); text-align:center; }
+    .final h2 { color:#fff; }
+    .final p { margin:0 0 24px; color:#d9e1df; }
+    .final .price { margin:0 0 22px; }
+    .final .cta { max-width:380px; margin:auto; color:var(--ink); background:#fff; }
+    .final .favorite-btn { max-width:380px; margin:10px auto 0; border-color:#fff; color:#fff; background:transparent; }
+    .final .favorite-btn:hover { background:rgba(255,255,255,.08); }
+    footer { padding:28px; color:#87918f; text-align:center; font-size:11px; }
+    .sticky-buy { display:none; }
+    @media (max-width:820px) {
+      body { padding-bottom:70px; }
+      .crumb { padding:10px 16px; }
+      .product-hero { display:block; padding:0 0 54px; }
+      .gallery { position:static; display:flex; flex-direction:column-reverse; gap:8px; }
+      .thumbs { flex-direction:row; max-height:none; padding:0 12px 4px; overflow-x:auto; overflow-y:hidden; }
+      .thumb { min-width:58px; }
+      .main-photo img { aspect-ratio:1/1; }
+      .photo-label { left:12px; bottom:12px; }
+      .purchase { padding:28px 18px 0; }
+      h1 { font-size:31px; }
+      .product-name { font-size:15px; }
+      .benefits span { padding:10px 4px; font-size:10px; }
+      .section { padding:62px 18px; }
+      h2 { font-size:30px; }
+      .reason-grid,.review-grid,.trust { grid-template-columns:1fr; }
+      .review-heading { align-items:start; flex-direction:column; }
+      .review-score { width:100%; }
+      .review-head { flex-wrap:wrap; }
+      .review-meta { white-space:normal; }
+      .reason-copy { padding:21px; }
+      .detail-split,.story { grid-template-columns:1fr; gap:30px; }
+      .detail-split .detail-copy { order:-1; }
+      .story-image { aspect-ratio:4/3; object-position:center 24%; }
+      .sticky-buy { position:fixed; left:0; right:0; bottom:0; z-index:30; display:grid; grid-template-columns:1fr 48px 1.4fr; gap:8px; align-items:center; min-height:68px; padding:8px 12px; background:#fff; box-shadow:0 -5px 20px rgba(38,53,54,.15); }
+      .sticky-price { font-family:inherit; font-size:17px; }
+      .sticky-buy .cta { min-height:49px; }
+      .sticky-buy .favorite-btn { min-height:49px; margin:0; padding:0; }
+      .sticky-buy .favorite-label { position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); white-space:nowrap; }
+    }
+
+    .quote-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+    .quote-grid blockquote { margin:0; padding:25px; background:#fff; border:1px solid var(--line); font-size:15px; line-height:1.85; }
+    .hero-copy h1 { font-size:clamp(36px,4.2vw,56px); }
+    @media (max-width: 760px) {
+      .quote-grid { grid-template-columns:1fr; }
+      .hero-copy h1 { font-size:34px; }
+    }
+  </style>
+<link href="assets/cougue-shell.css" rel="stylesheet"/>
+<meta content="noindex,nofollow" name="robots"/>
+<style>
+/* Layout classes above are unchanged from Sydney. Only content controls below are added. */
+.reason img,.story-image{height:auto;max-width:100%}.story>*{min-width:0}
+.cougue-drawer-search button{background-image:url('assets/shell-20260928/icon_search.svg')}
+@media(min-width:761px) and (max-width:1024px){.cougue-footer-inner{grid-template-columns:1fr 1fr;gap:32px 24px}.cougue-footer-brand{grid-column:1/-1}}
+.photo-pending{aspect-ratio:4/5;background:#eef0ee;border:1px dashed #a3afaa;display:grid;place-items:center;padding:28px;text-align:center;color:#5b6c65;line-height:1.8}.card-pending{aspect-ratio:4/3}.card-pending small{display:block;max-width:240px;margin:8px auto 0}.photo-pending small{font-size:12px;font-weight:400}.pending-note{font-size:12px;color:var(--muted)}
+#zoom{border:0;padding:0;display:block;width:100%;cursor:zoom-in}.main-photo img{object-fit:contain}.reason img{object-fit:contain;background:#f5f5f5}.story-image{object-fit:contain;background:#f5f5f5}
+.option-label{display:block;font-size:13px;margin-bottom:6px}#product-option{width:100%;padding:12px;border:1px solid var(--line);background:white;font:inherit;font-size:13px;margin-bottom:18px}.review-source,.related{font-size:12px;color:var(--muted)}
+.review-grid:has(> :nth-child(2):last-child){grid-template-columns:repeat(2,minmax(0,1fr))}.review-head{flex-wrap:wrap}.measure{font-size:32px}.measure span{font-size:13px}.fine{font-size:12px;color:var(--muted)}
+.specs div{display:grid;grid-template-columns:110px 1fr;gap:18px;padding:12px 0;border-bottom:1px solid var(--line);font-size:13px}.specs dd{margin:0}.related a{text-decoration:underline}
+dialog{max-width:min(92vw,820px);max-height:90vh;border:0;padding:24px;color:var(--ink)}dialog::backdrop{background:#152220bb}dialog img{width:auto;max-width:100%;max-height:72vh;margin:auto}dialog button{display:block;margin:0 0 14px auto;cursor:pointer}#purchase-dialog{max-width:460px}#purchase-dialog h2{font-size:24px}button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid var(--teal-dark);outline-offset:3px}
+@media(max-width:820px){.photo-pending{aspect-ratio:4/3}.review-grid:has(> :nth-child(2):last-child){grid-template-columns:1fr}.thumb{width:58px;flex:none}.specs div{grid-template-columns:90px 1fr}.photo-pending{padding:20px}.measure{font-size:28px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+<style>.client-fact-request{margin-top:28px;padding:20px;background:var(--sand);font-size:13px;color:var(--muted)}.reason img{aspect-ratio:4/3;object-fit:contain}.story-image{object-fit:contain}.photo-label{letter-spacing:0}</style>
+<style>.stock-note { margin:0 0 15px; padding:10px 13px; border-left:2px solid var(--teal-dark); background:var(--pale); color:var(--ink); font-size:13px; font-weight:700; line-height:1.55; }</style>
+</head>
+<body>
+<header class="cougue-site-header">
+<button aria-controls="cougue-search-panel" aria-expanded="false" aria-label="商品を検索" class="cougue-search-toggle" data-cougue-search-toggle="" type="button">
+<img alt="" src="assets/shell-20260928/icon_search.svg"/>
+</button>
+<nav aria-label="メインナビゲーション" class="cougue-desktop-nav">
+<div class="cougue-nav-item">
+<a class="cougue-nav-label" href="https://www.cougue.com/html/page9.html">Brand story</a>
+<div class="cougue-nav-menu">
+<a href="https://www.cougue.com/html/page9.html">ブランドストーリー</a>
+<a href="https://www.cougue.com/html/page2.html">自由が丘 本店</a>
+<a href="https://www.cougue.com/html/page10.html">お客様の声</a>
+<a href="https://www.cougue.com/html/page1.html">アフターケア</a>
+<a href="https://www.cougue.com/html/page34.html">ギフトラッピング</a>
+<a href="https://www.cougue.com/html/page6.html">よくあるご質問</a>
+</div>
+</div>
+<div class="cougue-nav-item">
+<a class="cougue-nav-label" href="https://www.cougue.com/view/category/ct15">Pearl</a>
+<div class="cougue-nav-menu">
+<a href="https://www.cougue.com/view/category/ct17">パールネックレス</a>
+<a href="https://www.cougue.com/view/category/ct16">パールリング</a>
+<a href="https://www.cougue.com/view/category/ct19">パールピアス・イヤリング</a>
+<a href="https://www.cougue.com/view/category/ct81">バロックパール商品</a>
+<a href="https://www.cougue.com/html/page28.html">パールへのこだわり</a>
+</div>
+</div>
+<div class="cougue-nav-item">
+<a class="cougue-nav-label" href="https://www.cougue.com/view/category/ct137">Jewelry</a>
+<div class="cougue-nav-menu">
+<a href="https://www.cougue.com/view/category/all_items">すべての商品</a>
+<a href="https://www.cougue.com/view/category/ct202">OUTLET</a>
+<a href="https://www.cougue.com/view/category/ct140">コレクション別で探す</a>
+<a href="https://www.cougue.com/view/category/ct141">パールの色で探す</a>
+<a href="https://www.cougue.com/view/category/ct142">パールネックレス長さで探す</a>
+</div>
+</div>
+<div class="cougue-nav-item">
+<a class="cougue-nav-label" href="https://www.cougue.com/view/news/list">Information</a>
+<div class="cougue-nav-menu">
+<a href="https://www.cougue.com/view/news/list">お知らせ</a>
+<a href="https://www.cougue.com/view/guide">ご利用ガイド</a>
+<a href="https://www.cougue.com/view/company">このショップについて</a>
+<a href="https://www.instagram.com/cougue.jiyugaoka/" rel="noopener" target="_blank">Instagram</a>
+</div>
+</div>
+</nav>
+<a aria-label="COUGUEトップページ" class="cougue-logo" href="https://www.cougue.com/">
+<img alt="自由が丘クーゲ ジュエリーショップ" src="assets/shell-20260928/logo.svg"/>
+</a>
+<div class="cougue-header-actions">
+<form action="https://www.cougue.com/view/search" class="cougue-header-search-form" method="get" role="search">
+<input aria-label="商品検索" name="search_keyword" placeholder="お探しのものを入力" type="search"/>
+<button aria-label="検索する" type="submit">
+<img alt="" src="assets/shell-20260928/icon_search.svg"/>
+</button>
+</form>
+<a aria-label="マイページ" class="cougue-icon-link" href="https://www.cougue.com/view/member/mypage">
+<img alt="" src="assets/shell-20260928/icon_user.svg"/>
+</a>
+<a aria-label="カートを見る" class="cougue-icon-link" href="https://www.cougue.com/view/cart">
+<img alt="" src="assets/shell-20260928/icon_bag.svg"/>
+</a>
+<a aria-label="お気に入り" class="cougue-icon-link" href="https://www.cougue.com/view/member/favorite">
+<img alt="" src="assets/shell-20260928/icon_heart.svg"/>
+</a>
+<button aria-controls="cougue-drawer" aria-expanded="false" aria-label="メニューを開く" class="cougue-menu-toggle" data-cougue-menu-toggle="" type="button">
+<span>
+</span>
+<span>
+</span>
+<span>
+</span>
+</button>
+</div>
+</header>
+<div aria-hidden="true" class="cougue-search-panel" data-cougue-search-panel="" id="cougue-search-panel">
+<form action="https://www.cougue.com/view/search" class="cougue-drawer-search" method="get" role="search">
+<input aria-label="商品検索" name="search_keyword" placeholder="お探しのものを入力してください" type="search"/>
+<button aria-label="検索する" type="submit">⌕</button>
+</form>
+</div>
+<div aria-hidden="true" class="cougue-drawer-overlay" data-cougue-drawer-overlay="">
+<aside aria-label="サイトメニュー" class="cougue-drawer" data-cougue-drawer="" id="cougue-drawer">
+<button aria-label="メニューを閉じる" class="cougue-drawer-close" data-cougue-drawer-close="" type="button">×</button>
+<form action="https://www.cougue.com/view/search" class="cougue-drawer-search" method="get" role="search">
+<input aria-label="商品検索" name="search_keyword" placeholder="お探しのものを入力してください" type="search"/>
+<button aria-label="検索する" type="submit">⌕</button>
+</form>
+<a class="cougue-drawer-primary" href="https://www.cougue.com/view/cart">カートを見る</a>
+<a class="cougue-drawer-primary" href="https://www.cougue.com/view/member/login">ログイン</a>
+<h2 class="cougue-drawer-section-title">アイテムカテゴリ</h2>
+<details>
+<summary>アイテム別</summary>
+<div class="cougue-drawer-sub">
+<a href="https://www.cougue.com/view/category/ct250">ネックレス</a>
+<a href="https://www.cougue.com/view/category/ct251">リング</a>
+<a href="https://www.cougue.com/view/category/ct252">ピアス・イヤリング</a>
+<a href="https://www.cougue.com/view/category/ct254">ブレスレット</a>
+<a href="https://www.cougue.com/view/category/ct255">ペンダント</a>
+</div>
+</details>
+<details>
+<summary>新着アイテム</summary>
+<div class="cougue-drawer-sub">
+<a href="https://www.cougue.com/view/category/ct5">新着商品一覧</a>
+<a href="https://www.cougue.com/view/category/ct7">新着パール</a>
+</div>
+</details>
+<details>
+<summary>OUTLET</summary>
+<div class="cougue-drawer-sub">
+<a href="https://www.cougue.com/view/category/ct202">OUTLET</a>
+<a href="https://www.cougue.com/view/category/ct203">パール OUTLET</a>
+</div>
+</details>
+<details>
+<summary>パール</summary>
+<div class="cougue-drawer-sub">
+<a href="https://www.cougue.com/view/category/ct15">パール</a>
+<a href="https://www.cougue.com/view/category/ct17">パールネックレス</a>
+<a href="https://www.cougue.com/view/category/ct16">パールリング</a>
+<a href="https://www.cougue.com/view/category/ct19">パールピアス・イヤリング</a>
+<a href="https://www.cougue.com/view/category/ct18">ネックレスセット</a>
+<a href="https://www.cougue.com/view/category/ct88">ブレスレット</a>
+</div>
+</details>
+<details>
+<summary>バロックパール商品</summary>
+<div class="cougue-drawer-sub">
+<a href="https://www.cougue.com/view/category/ct81">バロックパール商品</a>
+<a href="https://www.cougue.com/view/category/ct227">バロックパールネックレス</a>
+<a href="https://www.cougue.com/view/category/ct229">バロックパールピアス・イヤリング</a>
+<a href="https://www.cougue.com/view/category/ct236">ケシパール</a>
+<a href="https://www.cougue.com/view/category/ct246">オイスターパール</a>
+</div>
+</details>
+<details>
+<summary>商品を探す</summary>
+<div class="cougue-drawer-sub">
+<a href="https://www.cougue.com/view/category/ct137">商品を探す</a>
+<a href="https://www.cougue.com/view/category/ct140">コレクション別</a>
+<a href="https://www.cougue.com/view/category/ct141">パールの色</a>
+<a href="https://www.cougue.com/view/category/ct142">ネックレスの長さ</a>
+</div>
+</details>
+<a class="cougue-drawer-direct" href="https://www.cougue.com/view/news/list">お知らせ</a>
+<a class="cougue-drawer-direct" href="https://www.cougue.com/view/guide">ご利用ガイド</a>
+<a class="cougue-drawer-direct" href="https://www.cougue.com/view/company">このショップについて</a>
+<a class="cougue-drawer-direct" href="#makeshop-common-contact-url">お問い合わせ</a>
+</aside>
+</div>
+<div class="crumb">ホーム ＞ パールネックレス ＞ Clair（クレア）</div>
+<main>
+<section class="product-hero" data-slot="hero">
+<div aria-label="Clairの商品画像" class="gallery">
+<div class="thumbs">
+<button aria-label="白シャツでのClair着用写真を表示" aria-pressed="true" class="thumb active" data-label="白シャツにClairを" data-src="assets/clair-20261005/hero-white-shirt.jpg" type="button">
+<img alt="白シャツにClairを合わせた着用写真" loading="lazy" src="assets/clair-20261005/hero-white-shirt.jpg"/>
+</button>
+<button aria-label="デニムジャケットでのClair着用写真を表示" aria-pressed="false" class="thumb" data-label="デニムジャケットにClairを" data-src="assets/clair-20261005/blue-denim.jpg" type="button">
+<img alt="デニムジャケットにClairを合わせた着用写真" loading="lazy" src="assets/clair-20261005/blue-denim.jpg"/>
+</button>
+<button aria-label="Clairの耳元の着用写真を表示" aria-pressed="false" class="thumb" data-label="耳元と首元の着用写真" data-src="assets/clair-20261005/ear-detail.jpg" type="button">
+<img alt="Clairのネックレスと揺れる耳元の着用写真" loading="lazy" src="assets/clair-20261005/ear-detail.jpg"/>
+</button>
+<button aria-label="白の羽織りと黒のトップスを表示" aria-pressed="false" class="thumb" data-label="白の羽織りと黒のトップス" data-src="assets/clair-20260929/14.jpg" type="button">
+<img alt="白の羽織りと黒のトップス" class="" loading="lazy" src="assets/clair-20260929/14.jpg"/>
+</button>
+<button aria-label="ネックレスと耳元のセットを表示" aria-pressed="false" class="thumb" data-label="ネックレスと耳元のセット" data-src="assets/clair-20260929/1.jpg" type="button">
+<img alt="ネックレスと耳元のセット" class="" loading="lazy" src="assets/clair-20260929/1.jpg"/>
+</button>
+<button aria-label="ネックレス全体を表示" aria-pressed="false" class="thumb" data-label="ネックレス全体" data-src="assets/clair-20260929/2.jpg" type="button">
+<img alt="ネックレス全体" class="" loading="lazy" src="assets/clair-20260929/2.jpg"/>
+</button>
+<button aria-label="ネックレスのラインを表示" aria-pressed="false" class="thumb" data-label="ネックレスのライン" data-src="assets/clair-20260929/3.jpg" type="button">
+<img alt="ネックレスのライン" class="" loading="lazy" src="assets/clair-20260929/3.jpg"/>
+</button>
+<button aria-label="大粒の連なりを表示" aria-pressed="false" class="thumb" data-label="大粒の連なり" data-src="assets/clair-20260929/4.jpg" type="button">
+<img alt="大粒の連なり" class="" loading="lazy" src="assets/clair-20260929/4.jpg"/>
+</button>
+<button aria-label="一粒ずつの表情を表示" aria-pressed="false" class="thumb" data-label="一粒ずつの表情" data-src="assets/clair-20260929/5.jpg" type="button">
+<img alt="一粒ずつの表情" class="" loading="lazy" src="assets/clair-20260929/5.jpg"/>
+</button>
+<button aria-label="揺れるイヤリングを表示" aria-pressed="false" class="thumb" data-label="揺れるイヤリング" data-src="assets/clair-20260929/6.jpg" type="button">
+<img alt="揺れるイヤリング" class="" loading="lazy" src="assets/clair-20260929/6.jpg"/>
+</button>
+<button aria-label="ベージュのニットにを表示" aria-pressed="false" class="thumb" data-label="ベージュのニットに" data-src="assets/clair-20260929/7.jpg" type="button">
+<img alt="ベージュのニットに" class="" loading="lazy" src="assets/clair-20260929/7.jpg"/>
+</button>
+<button aria-label="ベージュのニット・首元を表示" aria-pressed="false" class="thumb" data-label="ベージュのニット・首元" data-src="assets/clair-20260929/8.jpg" type="button">
+<img alt="ベージュのニット・首元" class="" loading="lazy" src="assets/clair-20260929/8.jpg"/>
+</button>
+<button aria-label="ベージュのニット・横からを表示" aria-pressed="false" class="thumb" data-label="ベージュのニット・横から" data-src="assets/clair-20260929/9.jpg" type="button">
+<img alt="ベージュのニット・横から" class="" loading="lazy" src="assets/clair-20260929/9.jpg"/>
+</button>
+<button aria-label="首元の大粒パールを表示" aria-pressed="false" class="thumb" data-label="首元の大粒パール" data-src="assets/clair-20260929/10.jpg" type="button">
+<img alt="首元の大粒パール" class="" loading="lazy" src="assets/clair-20260929/10.jpg"/>
+</button>
+<button aria-label="ネックレスと耳元を表示" aria-pressed="false" class="thumb" data-label="ネックレスと耳元" data-src="assets/clair-20260929/11.jpg" type="button">
+<img alt="ネックレスと耳元" class="" loading="lazy" src="assets/clair-20260929/11.jpg"/>
+</button>
+<button aria-label="柄のトップスにを表示" aria-pressed="false" class="thumb" data-label="柄のトップスに" data-src="assets/clair-20260929/12.jpg" type="button">
+<img alt="柄のトップスに" class="" loading="lazy" src="assets/clair-20260929/12.jpg"/>
+</button>
+<button aria-label="耳元と顔まわりを表示" aria-pressed="false" class="thumb" data-label="耳元と顔まわり" data-src="assets/clair-20260929/13.jpg" type="button">
+<img alt="耳元と顔まわり" class="" loading="lazy" src="assets/clair-20260929/13.jpg"/>
+</button>
+<button aria-label="黒のタートルにを表示" aria-pressed="false" class="thumb" data-label="黒のタートルに" data-src="assets/clair-20260929/15.jpg" type="button">
+<img alt="黒のタートルに" class="" loading="lazy" src="assets/clair-20260929/15.jpg"/>
+</button>
+<button aria-label="白いトップスにを表示" aria-pressed="false" class="thumb" data-label="白いトップスに" data-src="assets/clair-20260929/16.jpg" type="button">
+<img alt="白いトップスに" class="" loading="lazy" src="assets/clair-20260929/16.jpg"/>
+</button>
+<button aria-label="パールの光と色の掲載例を表示" aria-pressed="false" class="thumb" data-label="パールの光と色の掲載例" data-src="assets/clair-20260929/17.jpg" type="button">
+<img alt="パールの光と色の掲載例" class="" loading="lazy" src="assets/clair-20260929/17.jpg"/>
+</button>
+<button aria-label="白シャツをラフにを表示" aria-pressed="false" class="thumb" data-label="白シャツをラフに" data-src="assets/clair-20260929/21.jpg" type="button">
+<img alt="白シャツをラフに" class="" loading="lazy" src="assets/clair-20260929/21.jpg"/>
+</button>
+<button aria-label="白のデニムジャケットにを表示" aria-pressed="false" class="thumb" data-label="白のデニムジャケットに" data-src="assets/clair-20260929/22.jpg" type="button">
+<img alt="白のデニムジャケットに" class="" loading="lazy" src="assets/clair-20260929/22.jpg"/>
+</button>
+<button aria-label="グレーのニットにを表示" aria-pressed="false" class="thumb" data-label="グレーのニットに" data-src="assets/clair-20260929/23.jpg" type="button">
+<img alt="グレーのニットに" class="" loading="lazy" src="assets/clair-20260929/23.jpg"/>
+</button>
+<button aria-label="ワンピースにを表示" aria-pressed="false" class="thumb" data-label="ワンピースに" data-src="assets/clair-20260929/24.jpg" type="button">
+<img alt="ワンピースに" class="" loading="lazy" src="assets/clair-20260929/24.jpg"/>
+</button>
+<button aria-label="ブルーのシャツにを表示" aria-pressed="false" class="thumb" data-label="ブルーのシャツに" data-src="assets/clair-20260929/25.jpg" type="button">
+<img alt="ブルーのシャツに" class="" loading="lazy" src="assets/clair-20260929/25.jpg"/>
+</button>
+<button aria-label="ブラウンのシャツにを表示" aria-pressed="false" class="thumb" data-label="ブラウンのシャツに" data-src="assets/clair-20260929/26.jpg" type="button">
+<img alt="ブラウンのシャツに" class="" loading="lazy" src="assets/clair-20260929/26.jpg"/>
+</button>
+<button aria-label="デニムシャツにを表示" aria-pressed="false" class="thumb" data-label="デニムシャツに" data-src="assets/clair-20260929/27.jpg" type="button">
+<img alt="デニムシャツに" class="" loading="lazy" src="assets/clair-20260929/27.jpg"/>
+</button>
+<button aria-label="色のあるブラウスにを表示" aria-pressed="false" class="thumb" data-label="色のあるブラウスに" data-src="assets/clair-20260929/28.jpg" type="button">
+<img alt="色のあるブラウスに" class="" loading="lazy" src="assets/clair-20260929/28.jpg"/>
+</button>
+<button aria-label="シンプルなトップスにを表示" aria-pressed="false" class="thumb" data-label="シンプルなトップスに" data-src="assets/clair-20260929/29.jpg" type="button">
+<img alt="シンプルなトップスに" class="" loading="lazy" src="assets/clair-20260929/29.jpg"/>
+</button>
+<button aria-label="白シャツと顔まわりを表示" aria-pressed="false" class="thumb" data-label="白シャツと顔まわり" data-src="assets/clair-20260929/30.jpg" type="button">
+<img alt="白シャツと顔まわり" class="" loading="lazy" src="assets/clair-20260929/30.jpg"/>
+</button>
+<button aria-label="耳元の着用掲載例を表示" aria-pressed="false" class="thumb" data-label="耳元の着用掲載例" data-src="assets/clair-20260929/31.jpg" type="button">
+<img alt="耳元の着用掲載例" class="" loading="lazy" src="assets/clair-20260929/31.jpg"/>
+</button>
+<button aria-label="オールノットの仕立てを表示" aria-pressed="false" class="thumb" data-label="オールノットの仕立て" data-src="assets/clair-20260929/32.jpg" type="button">
+<img alt="オールノットの仕立て" class="" loading="lazy" src="assets/clair-20260929/32.jpg"/>
+</button>
+<button aria-label="品質保証書の見本を表示" aria-pressed="false" class="thumb" data-label="品質保証書の見本" data-src="assets/clair-20260929/33.jpg" type="button">
+<img alt="品質保証書の見本" class="" loading="lazy" src="assets/clair-20260929/33.jpg"/>
+</button>
+<button aria-label="ギフトラッピングの見本を表示" aria-pressed="false" class="thumb" data-label="ギフトラッピングの見本" data-src="assets/clair-20260929/34.jpg" type="button">
+<img alt="ギフトラッピングの見本" class="" loading="lazy" src="assets/clair-20260929/34.jpg"/>
+</button>
+</div>
+<div class="main-photo">
+<button aria-label="商品画像を拡大" id="zoom" type="button">
+<img alt="白シャツにClairを合わせた着用写真" id="mainImage" src="assets/clair-20261005/hero-white-shirt.jpg"/>
+</button>
+<span class="photo-label" id="photoLabel">白シャツにClairを</span>
+</div>
+</div>
+<div class="purchase">
+<p class="eyebrow">CLAIR / BAROQUE PEARL SET</p>
+<h1 id="page-title">大粒でも、<br/>目に留まるのは、私。</h1>
+<p class="product-name">Clair（クレア）淡水パール ホワイトバロックネックレスセット</p>
+<p class="product-code">品番 pn087</p>
+<div class="price-row">
+<p class="price">¥68,000</p>
+</div>
+<p class="points">
+<a href="#reviews">購入者の声を見る（7件）</a>
+</p>
+<div class="summary">約12〜15mmの白いバロックパールを首元に。着慣れたシャツやニットにも、顔まわりから印象が生まれます。大きいのに、パールだけが先に歩き出さない。装いの中で、私の存在を引き立てる一本です。</div>
+<label class="option-label" for="product-option">オプション</label>
+<select id="product-option">
+<option value="earring">イヤリング</option>
+<option value="pierce">ピアス</option>
+</select>
+<p class="stock-note">現在ご用意できるClairは、残り○点です。</p>
+<div class="quantity-line">
+<label for="quantity">数量</label>
+<div class="quantity">
+<button aria-label="数量を減らす" id="minus" type="button">−</button>
+<input aria-label="数量" id="quantity" max="99" min="1" type="number" value="1"/>
+<button aria-label="数量を増やす" id="plus" type="button">＋</button>
+</div>
+</div>
+<button class="cta" id="cart" type="button">カートに入れる</button>
+<button aria-pressed="false" class="favorite-btn" id="favorite" type="button">♡ お気に入りに追加</button>
+<a class="sub-cta" href="#makeshop-common-contact-url">着け方・重さ・個体差について相談する</a>
+<div class="quick-spec">
+<div>
+<small>パール</small>
+<strong>淡水・ホワイトバロック</strong>
+</div>
+<div>
+<small>長さ</small>
+<strong>43〜45cm</strong>
+</div>
+<div>
+<small>粒の大きさ</small>
+<strong>約12〜15mm</strong>
+</div>
+<div>
+<small>セット</small>
+<strong>ピアス または イヤリング</strong>
+</div>
+</div>
+</div>
+</section>
+<section class="section wide reviews-section" data-slot="reviews" id="reviews">
+<div class="inner">
+<div class="review-heading">
+<div>
+<p class="eyebrow">CUSTOMER VOICES</p>
+<h2>Clairを選んだ方の声</h2>
+</div>
+<div class="review-score">
+<strong>4.7</strong>
+<span class="stars">★★★★☆</span>
+<small>全7件の購入者レビュー</small>
+</div>
+</div>
+<div class="review-grid">
+<article class="review">
+<div class="review-head">
+<span class="stars">★★★★☆</span>
+<span class="review-meta">oooiさん ／ 2023/07/14</span>
+</div>
+<p>かなり綺麗です</p>
+</article>
+<article class="review">
+<div class="review-head">
+<span class="stars">★★★★☆</span>
+<span class="review-meta">さおりさん ／ 2023/05/11</span>
+</div>
+<p>次のお出かけが楽しみになりました。</p>
+</article>
+<article class="review">
+<div class="review-head">
+<span class="stars">★★★★★</span>
+<span class="review-meta">maiさん ／ 2023/05/06</span>
+</div>
+<p>いつかお店の方にも伺ってみたいです。</p>
+</article>
+</div>
+<p class="review-source">COUGUE公式の購入者レビューより一部抜粋</p>
+<a class="sub-cta" href="https://www.cougue.com/view/review/000000000640">すべてのレビューを見る</a>
+</div>
+</section>
+<section class="section wide soft" data-slot="reasons">
+<div class="inner">
+<p class="eyebrow">CLAIR, IN YOUR STYLE</p>
+<h2>手持ちの服で、首元から決める。</h2>
+<p class="section-intro">白シャツ、黒のニット、デニムシャツ。服を変えるより、首元に何を合わせるか。同じ一本でも、合わせる服で違う表情を楽しめます。</p>
+<div class="reason-grid">
+<article class="reason">
+<img alt="白シャツと顔まわり" class="" loading="lazy" src="assets/clair-20260929/30.jpg"/>
+<div class="reason-copy">
+<span class="reason-number">01</span>
+<h3>白シャツに、白を重ねる。</h3>
+<p>同じ白でも、パールには一粒ずつ違うふくらみと陰影があります。襟を開けた白シャツに大粒を置くと、きちんとした仕事の服のまま、食事にも向かえる表情に変わります。</p>
+</div>
+</article>
+<article class="reason">
+<img alt="黒のタートルに" class="" loading="lazy" src="assets/clair-20260929/15.jpg"/>
+<div class="reason-copy">
+<span class="reason-number">02</span>
+<h3>黒のニットに、白を効かせる。</h3>
+<p>すっきりした黒の上で、白いパールの形がはっきり見える。飾りの少ない装いだからこそ、首元のひと連なりが、顔まわりに印象をつくります。</p>
+</div>
+</article>
+<article class="reason">
+<img alt="デニムシャツに" class="" loading="lazy" src="assets/clair-20260929/27.jpg"/>
+<div class="reason-copy">
+<span class="reason-number">03</span>
+<h3>デニムにも、胸を張れる白を。</h3>
+<p>ラフなデニムシャツに、大粒の白をひと連なり。気楽さは残したまま、人に会う日の顔まわりが決まります。いつものシャツで、少し気分を上げて出かけたいときに。</p>
+</div>
+</article>
+</div>
+</div>
+</section>
+<section class="section wide sand" data-slot="design">
+<div class="inner story">
+<img alt="オールノットの仕立て" class="story-image" loading="lazy" src="assets/clair-20260929/32.jpg"/>
+<div class="story-copy">
+<p class="eyebrow">THE SHAPE AND THE LINE</p>
+<h2>一粒ずつ違う形が、<br/>装いに表情をつくる。</h2>
+<p>Clairに使うのは、約12〜15mmの淡水バロックパール。ふくらみも、くぼみも、一粒ずつ違います。その自然な形がひと連なりになると、きっちり揃った丸とは違う、表情のある首元に。</p>
+<p>魅力は、大きさだけではありません。光の角度で浮かぶピンクやグレー、白という一言では言い切れない輝き。その豊かな光が、シンプルなシャツやニットにも、胸を張って人に会えるクラス感を添えます。</p>
+<p>長さは43〜45cm。首元でひと連なりになる、大粒の存在感を楽しむ一本です。</p>
+<p>仕立てはオールノット。珠と珠の間にひとつずつ結び目をつくり、パール同士が直接触れ合わないようにしています。大粒が連なっても一本がしなやかに首に沿うのは、この結び目の手間があるからです。</p>
+</div>
+</div>
+</section>
+<section class="section" data-slot="hardware">
+<div class="inner story">
+<img alt="ネックレスと耳元" class="story-image" loading="lazy" src="assets/clair-20260929/11.jpg"/>
+<div class="story-copy">
+<p class="eyebrow">NECKLACE AND EARRINGS</p>
+<h2>首元と耳元を揃えても、<br/>かしこまりすぎない。</h2>
+<p>Clairは、ネックレスと耳元のパールのセットです。耳元はピアスかイヤリングからお選びいただけ、どちらも揺れるタイプ。首元の大粒と耳元の白を合わせると、顔まわりの印象がひとつにまとまります。</p>
+<p>形の違うバロックが並ぶ首元と、動くたびに揺れる耳元。きっちり揃いすぎない組み合わせが、クラシカルな正装だけではない楽しみ方へ。話すとき、振り向くときにも表情が生まれるから、シャツやニットの日にも気負わず着けられます。</p>
+</div>
+</div>
+</section>
+<section class="section wide sand" data-slot="selection">
+<div class="inner detail-split">
+<img src="assets/sydney/pearl-selection-2-bright-v1.jpg" alt="COUGUEのパールを選定する様子" loading="lazy"/>
+<div class="detail-copy">
+<p class="eyebrow">THE EYE BEHIND COUGUE</p>
+<h2>そこまでして、<br/>選ぶ人がいる</h2>
+<p>COUGUEのパールを選ぶのは、一貫して仕入れを担ってきた、専務の藤縄です。創業者でありデザイナーである母の仕事を25年間そばで見て、どんな女性に、どんなパールを、どう見せたいのかを理解してきました。</p>
+<p>仕入れ先との30年近い関係があるからこそ、通常は束で扱われるパールも、一本ずつ、一粒ずつ選ぶことができます。けれど、本当に伝えたいのは、その特別扱いではありません。</p>
+<p>立ったまま三時間。日によっては五〜六時間。色、形、テリ、わずかな個体差を見ながら選び続ける。思い描いた女性の姿を形にできるパールを探して、専務はそれを毎回やります。</p>
+<p>
+<strong>クオリティは揃える。でも、個性まで揃えすぎない。</strong>
+</p>
+</div>
+</div>
+</section>
+<section class="section" data-slot="lasting-value">
+<div class="inner story">
+<img alt="ワンピースにClairのネックレスと耳元を合わせた着用写真" class="story-image" loading="lazy" src="assets/clair-20261005/beige-dress.jpg"/>
+<div class="story-copy">
+<p class="eyebrow">ONE SET, MANY DAYS</p>
+<h2>着る服が変わっても、<br/>手が伸びるひと組。</h2>
+<p>白シャツやデニムに合わせる日も、ワンピースで出かける日も。大粒の白を、特別な日のためだけにしまっておかなくていい。服が変わるたび、Clairの見え方も変わります。</p>
+<p>ネックレスと耳元を揃える日も、どちらか一つを選ぶ日も。行き先やその日の気分に合わせて、ひと組を自分らしく楽しめます。</p>
+</div>
+</div>
+</section>
+<section class="section" data-slot="support">
+<p class="eyebrow">SHOP WITH CONFIDENCE</p>
+<h2>手に取る前も、その後も</h2>
+<div class="trust">
+<article>
+<h3>実物で、似合い方を</h3>
+<p>大粒の見え方を確かめたい方は、自由が丘の店舗でご相談ください。いつもの服と合わせながら、似合う着け方をご一緒に考えます。</p>
+<a href="https://www.cougue.com/html/page2.html">店舗のご案内 →</a>
+</article>
+<article>
+<h3>品質保証書を添えて</h3>
+<p>COUGUEが発行する品質保証書をお付けします。購入後も、修理やメンテナンスについてご相談いただけます。</p>
+<a href="https://www.cougue.com/html/page1.html">アフターケアについて →</a>
+</article>
+<article>
+<h3>贈る日のためにも</h3>
+<p>ギフトラッピングを無料で承ります。贈りものとしてお選びの際は、ご購入時にラッピングをご指定ください。贈りものや着けたい日のご予定がある方は、ご注文前にご相談ください。</p>
+<a href="https://www.cougue.com/html/page34.html">ギフト包装について →</a>
+</article>
+</div>
+</section>
+<section class="section faq" data-slot="faq">
+<p class="eyebrow">FAQ / PRODUCT DETAILS</p>
+<h2>Clairについて</h2>
+<details>
+<summary>大粒のネックレスは、重くありませんか？</summary>
+<p>大粒なので、小さなパールのネックレスと比べれば重さはあります。けれど、その重みで首元にしっかり納まり、浮いたり揺れたりしないので、着けてみるとかえって重さを感じにくいものです。一年のうち200日ほど大粒のパールを着けている、代表の藤縄が実感していることです。</p>
+</details>
+<details>
+<summary>大粒のパールを着けるのは、初めてです。</summary>
+<p>初めて着ける日は、少し思いきりがいるかもしれません。けれど、着けた日に自分の中から湧いてくる自信や、まわりの方の視線を感じるうちに、手放せない一本になっていきます。まずは着慣れたシャツやニットに合わせてみてください。普段よく着る服を教えていただければ、合わせ方をご一緒に考えます。</p>
+</details>
+<details>
+<summary>写真と同じ形のパールが届きますか？</summary>
+<p>バロックパールは自然が生んだ形のため、ふくらみ、えくぼのようなくぼみ、光の角度で見える色合いは一粒ずつ異なり、写真とまったく同じにはなりません。大きさにも約12〜15mmの幅があります。その違いがClairの表情であり、自然な形を楽しむ魅力でもあります。形の個性について気になることがあれば、ご注文前にお尋ねください。届いた商品の状態について不安がある場合も、ご遠慮なくご相談ください。</p>
+</details>
+<details>
+<summary>耳元のパールは選べますか？</summary>
+<p>ご注文時に、ピアスかイヤリングのどちらかをお選びいただけます。どちらも耳元で揺れるタイプです。ネックレスと合わせて着ける日も、ネックレスだけ、耳元だけの日も。服や行き先に合わせて、ひと組を分けて使えます。</p>
+</details>
+<details>
+<summary>商品仕様・サイズ</summary>
+<dl class="specs">
+<div>
+<dt>素材</dt>
+<dd>淡水パール・シルバー925</dd>
+</div>
+<div>
+<dt>カラー・形</dt>
+<dd>ホワイト・バロック</dd>
+</div>
+<div>
+<dt>ネックレスの長さ</dt>
+<dd>43〜45cm</dd>
+</div>
+<div>
+<dt>珠の大きさ</dt>
+<dd>直径約12〜15mm</dd>
+</div>
+<div>
+<dt>留め具</dt>
+<dd>クラスプ</dd>
+</div>
+<div>
+<dt>仕立て</dt>
+<dd>オールノット</dd>
+</div>
+<div>
+<dt>セット</dt>
+<dd>ピアス または イヤリング</dd>
+</div>
+<div>
+<dt>品番</dt>
+<dd>pn087</dd>
+</div>
+</dl>
+</details>
+<p class="client-fact-request">藤縄様へ：耳元のスタッドタイプの掲載写真があるため、現在お選びいただけるタイプをご確認ください。</p>
+</section>
+<section class="final" data-slot="final">
+<p class="eyebrow">CLAIR / PN087</p>
+<h2>首元と耳元が決まると、<br/>出かける気分も変わる。</h2>
+<p>旅先の街へ。久しぶりに会う人との食事へ。首元に大粒の白、耳元に揺れるパール。着慣れた服で出かける日も、少し胸を張れる装いに。人に会うのが楽しみになる、そんなひと組を。</p>
+<div class="price">¥68,000</div>
+<button class="cta cart-btn" data-cart="" type="button">カートに入れる</button>
+<button aria-pressed="false" class="favorite-btn" data-favorite="" type="button">♡ お気に入りに追加</button>
+</section>
+</main>
+<footer class="cougue-footer">
+<div class="cougue-footer-inner">
+<div class="cougue-footer-brand">
+<a href="https://www.cougue.com/">
+<img alt="クーゲオンラインショップ" src="assets/shell-20260928/logo.svg"/>
+</a>
+<h2>クーゲオンラインショップ</h2>
+<p>〒152-0035 東京都目黒区自由が丘2-16-18（<a href="https://www.google.com/maps/place/%E8%87%AA%E7%94%B1%E3%81%8C%E4%B8%98+%E3%82%AF%E3%83%BC%E3%82%B2/" rel="noopener" target="_blank">Map</a>）</p>
+<p>Tel：03-5729-0521</p>
+<p>E-mail：info@cougue.com</p>
+</div>
+<nav aria-label="サポート" class="cougue-footer-nav">
+<h2>Support</h2>
+<a href="https://www.cougue.com/view/guide">ご利用ガイド</a>
+<a href="https://www.cougue.com/html/page1.html">アフターケア</a>
+<a href="https://www.cougue.com/html/page34.html">ギフト包装について</a>
+<a href="https://www.cougue.com/html/page6.html">よくある質問</a>
+</nav>
+<nav aria-label="アカウント" class="cougue-footer-nav">
+<h2>Account</h2>
+<a href="https://www.cougue.com/view/cart">カートを見る</a>
+<a href="https://www.cougue.com/view/member/login">ログイン・新規登録</a>
+<a href="https://www.cougue.com/ssl/popup_mailmagazine.html?db=kokifujinawa">メルマガ登録</a>
+</nav>
+<nav aria-label="会社情報" class="cougue-footer-nav">
+<h2>Company</h2>
+<a href="https://www.cougue.com/html/page7.html">プライバシーポリシー</a>
+<a href="https://www.cougue.com/view/company">会社概要</a>
+<a href="https://www.cougue.com/html/page18.html">採用情報</a>
+<a href="https://www.cougue.com/html/ordercontract.html">特定商取引に基づく表記</a>
+</nav>
+</div>
+<div class="cougue-footer-copy">Copyright (C) 2025 archvision Co.,Ltd. All Rights Reserved.</div>
+</footer>
+<div class="sticky-buy">
+<span class="sticky-price">¥68,000</span>
+<button aria-label="お気に入りに追加" aria-pressed="false" class="favorite-btn" data-favorite="" type="button">♡</button>
+<button class="cta cart-btn" data-cart="" type="button">カートに入れる</button>
+</div>
+<script src="assets/cougue-shell.js">
+</script>
+<dialog aria-label="商品画像の拡大" id="image-dialog">
+<button id="close-dialog" type="button">閉じる ×</button>
+<img alt="" id="zoom-image"/>
+</dialog>
+<dialog aria-labelledby="purchase-dialog-title" id="purchase-dialog">
+<button id="purchase-close" type="button">閉じる ×</button>
+<h2 id="purchase-dialog-title">購入は公式ページで</h2>
+<p>こちらは確認用モックです。カートへの追加は行っていません。オプションと数量は、公式ページで改めてお選びください。</p>
+<a class="cta" href="https://www.cougue.com/view/item/000000000640">公式商品ページへ進む</a>
+</dialog>
+<script>
+const mainImage=document.getElementById('mainImage');
+document.querySelectorAll('.thumb').forEach(b=>b.onclick=()=>{mainImage.src=b.dataset.src;mainImage.alt=b.querySelector('img').alt;document.getElementById('photoLabel').textContent=b.dataset.label;document.querySelectorAll('.thumb').forEach(x=>{x.classList.toggle('active',x===b);x.setAttribute('aria-pressed',String(x===b))})});
+const zoomDialog=document.getElementById('image-dialog');document.getElementById('zoom').onclick=()=>{const im=document.getElementById('zoom-image');im.src=mainImage.src;im.alt=mainImage.alt;zoomDialog.showModal()};document.getElementById('close-dialog').onclick=()=>zoomDialog.close();
+const q=document.getElementById('quantity');function clamp(){q.value=Math.max(1,Math.min(99,parseInt(q.value)||1))}document.getElementById('minus').onclick=()=>{clamp();q.value=Math.max(1,+q.value-1)};document.getElementById('plus').onclick=()=>{clamp();q.value=Math.min(99,+q.value+1)};q.onchange=clamp;
+document.querySelectorAll('#favorite,[data-favorite]').forEach(b=>b.onclick=()=>{const on=b.getAttribute('aria-pressed')!=='true';document.querySelectorAll('#favorite,[data-favorite]').forEach(x=>{x.setAttribute('aria-pressed',String(on));x.textContent=x.closest('.sticky-buy')?(on?'♥':'♡'):(on?'♥ お気に入りに追加済み':'♡ お気に入りに追加');x.setAttribute('aria-label',on?'お気に入りに追加済み':'お気に入りに追加');x.title='モック内の表示確認です。公式サイトには保存されません。'})});
+const pd=document.getElementById('purchase-dialog');document.querySelectorAll('#cart,[data-cart]').forEach(b=>b.onclick=()=>pd.showModal());document.getElementById('purchase-close').onclick=()=>pd.close();
+</script>
+</body>
+</html>
