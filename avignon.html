@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Avignon アヴィニョン｜COUGUE</title>
+<meta name="description" content="装いにやわらかさを。私には、存在感を。Avignonの着こなしと、丸みに近いバロックパールの魅力をご紹介します。"/>
+<style>
+    :root {
+      --ink:#263536;
+      --muted:#707b79;
+      --teal:#23aeb7;
+      --teal-dark:#138b93;
+      --pale:#eaf7f7;
+      --sand:#f7f3ee;
+      --line:#dce4e2;
+      --white:#fff;
+      --shadow:0 18px 48px rgba(38,53,54,.11);
+    }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; color:var(--ink); background:#fff; font-family:"Noto Sans JP","游ゴシック体","メイリオ",YuGothic,"游ゴシック Medium","Yu Gothic Medium","游ゴシック","Yu Gothic",sans-serif; line-height:1.75; }
+    h1,h2,h3,summary { text-wrap:balance; word-break:auto-phrase; line-break:strict; }
+    p,.summary,.benefits span,td { text-wrap:pretty; word-break:auto-phrase; line-break:strict; }
+    .nowrap { white-space:nowrap; }
+    a { color:inherit; text-decoration:none; }
+    button { color:inherit; font:inherit; }
+    img { display:block; width:100%; }
+    .crumb { max-width:1180px; margin:auto; padding:15px 24px; color:#7e8785; font-size:12px; }
+    .product-hero { max-width:1180px; margin:0 auto; padding:12px 24px 78px; display:grid; grid-template-columns:minmax(0,1.05fr) minmax(360px,.72fr); gap:56px; align-items:start; }
+    .gallery { display:grid; grid-template-columns:72px minmax(0,1fr); gap:14px; position:sticky; top:86px; }
+    .thumbs { display:flex; flex-direction:column; gap:9px; max-height:min(70vh,560px); overflow-y:auto; padding-right:4px; scrollbar-width:thin; }
+    .thumb { padding:0; border:1px solid transparent; background:#f3f3f3; cursor:pointer; opacity:.72; }
+    .thumb.active { border-color:var(--ink); opacity:1; }
+    .thumb img { aspect-ratio:1/1; object-fit:cover; }
+    .main-photo { position:relative; overflow:hidden; background:#f2f3f2; }
+    .main-photo img { aspect-ratio:1/1; object-fit:cover; transition:opacity .18s ease; }
+    .photo-label { position:absolute; left:16px; bottom:16px; padding:6px 10px; color:#fff; background:rgba(38,53,54,.74); font-size:11px; letter-spacing:.08em; }
+    .purchase { padding-top:12px; }
+    .eyebrow { margin:0 0 12px; color:var(--teal-dark); font-family:Roboto,Times,serif; font-size:11px; font-weight:700; letter-spacing:.18em; }
+    h1,h2 { font-family:inherit; font-weight:600; letter-spacing:.01em; }
+    h1 { margin:0; font-size:clamp(30px,3.2vw,40px); line-height:1.35; letter-spacing:.03em; }
+    .product-name { margin:15px 0 0; font-size:17px; font-weight:700; line-height:1.6; }
+    .product-code { margin:4px 0 0; color:var(--muted); font-size:12px; }
+    .price-row { display:flex; align-items:baseline; gap:14px; margin:23px 0 4px; }
+    .price { margin:0; font-family:inherit; font-size:30px; line-height:1.2; }
+    .tax { color:var(--muted); font-size:11px; }
+    .points { margin:0 0 22px; color:var(--teal-dark); font-size:12px; font-weight:700; }
+    .benefits { display:grid; grid-template-columns:repeat(3,1fr); border:1px solid var(--line); margin:0 0 22px; }
+    .benefits span { padding:12px 7px; text-align:center; font-size:11px; line-height:1.5; }
+    .benefits span + span { border-left:1px solid var(--line); }
+    .summary { margin:0 0 21px; padding:18px 20px; background:var(--sand); font-size:14px; }
+    .quantity-line { display:flex; align-items:center; justify-content:space-between; margin:0 0 13px; font-size:13px; }
+    .quantity { display:flex; align-items:center; border:1px solid var(--line); }
+    .quantity button,.quantity input { width:38px; height:38px; display:grid; place-items:center; border:0; background:#fff; text-align:center; font:inherit; }
+    .quantity input { width:48px; appearance:textfield; }
+    .quantity input::-webkit-inner-spin-button,.quantity input::-webkit-outer-spin-button { appearance:none; margin:0; }
+    .quantity button { cursor:pointer; }
+    .cta { min-height:56px; display:flex; align-items:center; justify-content:center; width:100%; border:0; color:#fff; background:var(--ink); font-weight:700; letter-spacing:.06em; cursor:pointer; }
+    .cta:hover { background:#142627; }
+    .favorite-btn { min-height:50px; display:flex; align-items:center; justify-content:center; gap:9px; width:100%; margin-top:10px; border:1px solid var(--ink); color:var(--ink); background:#fff; font:inherit; font-size:13px; font-weight:700; cursor:pointer; }
+    .favorite-btn:hover { background:#f6f3ed; }
+    .favorite-btn .favorite-icon { font-size:20px; line-height:1; }
+    .favorite-btn[aria-pressed="true"] .favorite-icon { color:var(--teal-dark); }
+    .sub-cta { min-height:50px; display:flex; align-items:center; justify-content:center; width:100%; margin-top:10px; border:1px solid var(--ink); background:#fff; font-size:13px; font-weight:700; }
+    .microcopy { margin:12px 0 0; color:var(--muted); text-align:center; font-size:11px; }
+    .quick-spec { display:grid; grid-template-columns:1fr 1fr; gap:0; margin-top:26px; border-top:1px solid var(--line); }
+    .quick-spec div { padding:12px 0; border-bottom:1px solid var(--line); }
+    .quick-spec div:nth-child(odd) { padding-right:14px; }
+    .quick-spec small { display:block; color:var(--muted); font-size:10px; }
+    .quick-spec strong { display:block; font-size:13px; }
+    .section { max-width:1120px; margin:auto; padding:86px 24px; }
+    .wide { max-width:none; }
+    .soft { background:var(--pale); }
+    .sand { background:var(--sand); }
+    .inner { max-width:1120px; margin:auto; }
+    h2 { margin:0 0 14px; font-size:clamp(30px,4vw,46px); line-height:1.4; }
+    .section-intro { max-width:720px; margin:0 0 36px; color:var(--muted); }
+    .reason-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+    .reason { display:flex; flex-direction:column; overflow:hidden; background:#fff; border:1px solid var(--line); }
+    .reason img { aspect-ratio:4/3; object-fit:cover; }
+    .reason-copy { flex:1; padding:24px 26px 28px; }
+    .reason-number { color:var(--teal); font-family:Roboto,Times,serif; font-size:26px; }
+    .reason h3 { margin:10px 0 8px; font-size:19px; line-height:1.5; }
+    .reason p { margin:0; color:var(--muted); font-size:14px; }
+    .detail-split { display:grid; grid-template-columns:1fr 1fr; gap:58px; align-items:center; }
+    .detail-split img { aspect-ratio:1/1; object-fit:cover; object-position:67% center; }
+    .detail-copy h2,.story-copy h2 { font-size:clamp(30px,3.2vw,40px); }
+    .detail-copy p { margin:18px 0; }
+    .review-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+    .review { min-width:0; padding:25px; background:#fff; border:1px solid var(--line); }
+    .stars { color:#d6a63f; letter-spacing:.12em; }
+    .review p { margin:12px 0 0; font-family:inherit; font-size:15px; line-height:1.8; }
+    .reviews-section { background:#fff; border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+    .review-heading { display:flex; justify-content:space-between; align-items:end; gap:32px; margin-bottom:30px; }
+    .review-heading h2 { margin-bottom:0; }
+    .review-score { min-width:190px; padding:18px 22px; background:var(--sand); text-align:center; }
+    .review-score strong { display:block; font-size:34px; line-height:1.1; }
+    .review-score .stars { display:block; margin-top:5px; font-size:14px; }
+    .review-score small { display:block; margin-top:4px; color:var(--muted); font-size:11px; }
+    .review-head { display:flex; align-items:center; justify-content:space-between; gap:18px; }
+    .review-meta { color:var(--muted); font-size:11px; white-space:nowrap; }
+    .review-more { margin-top:18px; padding:0; border:0; }
+    .review-more:last-child { border-bottom:0; }
+    .review-more > summary { display:flex; align-items:center; justify-content:center; min-height:54px; padding:12px 20px; border:1px solid var(--ink); cursor:pointer; list-style:none; }
+    .review-more > summary::-webkit-details-marker { display:none; }
+    .review-more > summary::after { content:'＋'; margin-left:12px; font-weight:400; }
+    .review-more[open] > summary::after { content:'−'; }
+    .review-more .review-grid { margin-top:18px; }
+    .story { display:grid; grid-template-columns:.9fr 1.1fr; gap:64px; align-items:center; }
+    .story-image { aspect-ratio:4/5; object-fit:cover; }
+    .story-copy p { margin:17px 0; }
+    .trust { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:32px; }
+    .story .trust { grid-template-columns:1fr; gap:8px; }
+    .trust article { padding:24px 0; border-top:2px solid var(--teal); }
+    .trust h3 { margin:0 0 8px; font-size:17px; }
+    .trust p { margin:0; color:var(--muted); font-size:13px; }
+    .faq { max-width:850px; }
+    details { padding:19px 0; border-top:1px solid var(--line); }
+    details:last-child { border-bottom:1px solid var(--line); }
+    summary { cursor:pointer; font-weight:700; }
+    details p { margin:11px 0 0 22px; color:var(--muted); font-size:14px; }
+    .final { padding:92px 24px; color:#fff; background:var(--ink); text-align:center; }
+    .final h2 { color:#fff; }
+    .final p { margin:0 0 24px; color:#d9e1df; }
+    .final .price { margin:0 0 22px; }
+    .final .cta { max-width:380px; margin:auto; color:var(--ink); background:#fff; }
+    .final .favorite-btn { max-width:380px; margin:10px auto 0; border-color:#fff; color:#fff; background:transparent; }
+    .final .favorite-btn:hover { background:rgba(255,255,255,.08); }
+    footer { padding:28px; color:#87918f; text-align:center; font-size:11px; }
+    .sticky-buy { display:none; }
+    @media (max-width:820px) {
+      body { padding-bottom:70px; }
+      .crumb { padding:10px 16px; }
+      .product-hero { display:block; padding:0 0 54px; }
+      .gallery { position:static; display:flex; flex-direction:column-reverse; gap:8px; }
+      .thumbs { flex-direction:row; max-height:none; padding:0 12px 4px; overflow-x:auto; overflow-y:hidden; }
+      .thumb { min-width:58px; }
+      .main-photo img { aspect-ratio:1/1; }
+      .photo-label { left:12px; bottom:12px; }
+      .purchase { padding:28px 18px 0; }
+      h1 { font-size:31px; }
+      .product-name { font-size:15px; }
+      .benefits span { padding:10px 4px; font-size:10px; }
+      .section { padding:62px 18px; }
+      h2 { font-size:30px; }
+      .reason-grid,.review-grid,.trust { grid-template-columns:1fr; }
+      .review-heading { align-items:start; flex-direction:column; }
+      .review-score { width:100%; }
+      .review-head { flex-wrap:wrap; }
+      .review-meta { white-space:normal; }
+      .reason-copy { padding:21px; }
+      .detail-split,.story { grid-template-columns:1fr; gap:30px; }
+      .detail-split .detail-copy { order:-1; }
+      .story-image { aspect-ratio:4/3; object-position:center 24%; }
+      .sticky-buy { position:fixed; left:0; right:0; bottom:0; z-index:30; display:grid; grid-template-columns:1fr 48px 1.4fr; gap:8px; align-items:center; min-height:68px; padding:8px 12px; background:#fff; box-shadow:0 -5px 20px rgba(38,53,54,.15); }
+      .sticky-price { font-family:inherit; font-size:17px; }
+      .sticky-buy .cta { min-height:49px; }
+      .sticky-buy .favorite-btn { min-height:49px; margin:0; padding:0; }
+      .sticky-buy .favorite-label { position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); white-space:nowrap; }
+    }
+
+    .quote-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+    .quote-grid blockquote { margin:0; padding:25px; background:#fff; border:1px solid var(--line); font-size:15px; line-height:1.85; }
+    .hero-copy h1 { font-size:clamp(36px,4.2vw,56px); }
+    @media (max-width: 760px) {
+      .quote-grid { grid-template-columns:1fr; }
+      .hero-copy h1 { font-size:34px; }
+    }
+  </style>
+<link href="assets/cougue-shell.css" rel="stylesheet"/>
+<meta content="noindex,nofollow" name="robots"/><style>
+/* Layout classes above are unchanged from Sydney. Only content controls below are added. */
+.reason img,.story-image{height:auto;max-width:100%}.story>*{min-width:0}
+.cougue-drawer-search button{background-image:url('assets/shell-20260928/icon_search.svg')}
+@media(min-width:761px) and (max-width:1024px){.cougue-footer-inner{grid-template-columns:1fr 1fr;gap:32px 24px}.cougue-footer-brand{grid-column:1/-1}}
+.photo-pending{aspect-ratio:4/5;background:#eef0ee;border:1px dashed #a3afaa;display:grid;place-items:center;padding:28px;text-align:center;color:#5b6c65;line-height:1.8}.card-pending{aspect-ratio:4/3}.card-pending small{display:block;max-width:240px;margin:8px auto 0}.photo-pending small{font-size:12px;font-weight:400}.pending-note{font-size:12px;color:var(--muted)}
+#zoom{border:0;padding:0;display:block;width:100%;cursor:zoom-in}.main-photo img{object-fit:contain}.reason img{object-fit:contain;background:#f5f5f5}.story-image{object-fit:contain;background:#f5f5f5}
+.option-label{display:block;font-size:13px;margin-bottom:6px}#product-option{width:100%;padding:12px;border:1px solid var(--line);background:white;font:inherit;font-size:13px;margin-bottom:18px}.review-source,.related{font-size:12px;color:var(--muted)}
+.review-grid:has(> :nth-child(2):last-child){grid-template-columns:repeat(2,minmax(0,1fr))}.review-head{flex-wrap:wrap}.measure{font-size:32px}.measure span{font-size:13px}.fine{font-size:12px;color:var(--muted)}
+.specs div{display:grid;grid-template-columns:110px 1fr;gap:18px;padding:12px 0;border-bottom:1px solid var(--line);font-size:13px}.specs dd{margin:0}.related a{text-decoration:underline}
+dialog{max-width:min(92vw,820px);max-height:90vh;border:0;padding:24px;color:var(--ink)}dialog::backdrop{background:#152220bb}dialog img{width:auto;max-width:100%;max-height:72vh;margin:auto}dialog button{display:block;margin:0 0 14px auto;cursor:pointer}#purchase-dialog{max-width:460px}#purchase-dialog h2{font-size:24px}button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid var(--teal-dark);outline-offset:3px}
+@media(max-width:820px){.photo-pending{aspect-ratio:4/3}.review-grid:has(> :nth-child(2):last-child){grid-template-columns:1fr}.thumb{width:58px;flex:none}.specs div{grid-template-columns:90px 1fr}.photo-pending{padding:20px}.measure{font-size:28px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style><style>.product-hero h1{font-size:clamp(31px,2.65vw,38px)}.variant-caption{margin:0;padding:8px 14px;background:#f5f5f5;color:var(--muted);font-size:11px}.client-fact-request{margin-top:28px;padding:20px;background:var(--sand);font-size:13px;color:var(--muted)}#product-option:disabled{opacity:1;color:var(--ink)}.reason-photo-empty{aspect-ratio:4/3;background:#f5f5f5;border-bottom:1px solid var(--line)}</style></head>
+<body>
+<header class="cougue-site-header">
+<button aria-controls="cougue-search-panel" aria-expanded="false" aria-label="商品を検索" class="cougue-search-toggle" data-cougue-search-toggle="" type="button"><img alt="" src="assets/shell-20260928/icon_search.svg"/></button>
+<nav aria-label="メインナビゲーション" class="cougue-desktop-nav">
+<div class="cougue-nav-item"><a class="cougue-nav-label" href="https://www.cougue.com/html/page9.html">Brand story</a><div class="cougue-nav-menu"><a href="https://www.cougue.com/html/page9.html">ブランドストーリー</a><a href="https://www.cougue.com/html/page2.html">自由が丘 本店</a><a href="https://www.cougue.com/html/page10.html">お客様の声</a><a href="https://www.cougue.com/html/page1.html">アフターケア</a><a href="https://www.cougue.com/html/page34.html">ギフトラッピング</a><a href="https://www.cougue.com/html/page6.html">よくあるご質問</a></div></div>
+<div class="cougue-nav-item"><a class="cougue-nav-label" href="https://www.cougue.com/view/category/ct15">Pearl</a><div class="cougue-nav-menu"><a href="https://www.cougue.com/view/category/ct17">パールネックレス</a><a href="https://www.cougue.com/view/category/ct16">パールリング</a><a href="https://www.cougue.com/view/category/ct19">パールピアス・イヤリング</a><a href="https://www.cougue.com/view/category/ct81">バロックパール商品</a><a href="https://www.cougue.com/html/page28.html">パールへのこだわり</a></div></div>
+<div class="cougue-nav-item"><a class="cougue-nav-label" href="https://www.cougue.com/view/category/ct137">Jewelry</a><div class="cougue-nav-menu"><a href="https://www.cougue.com/view/category/all_items">すべての商品</a><a href="https://www.cougue.com/view/category/ct202">OUTLET</a><a href="https://www.cougue.com/view/category/ct140">コレクション別で探す</a><a href="https://www.cougue.com/view/category/ct141">パールの色で探す</a><a href="https://www.cougue.com/view/category/ct142">パールネックレス長さで探す</a></div></div>
+<div class="cougue-nav-item"><a class="cougue-nav-label" href="https://www.cougue.com/view/news/list">Information</a><div class="cougue-nav-menu"><a href="https://www.cougue.com/view/news/list">お知らせ</a><a href="https://www.cougue.com/view/guide">ご利用ガイド</a><a href="https://www.cougue.com/view/company">このショップについて</a><a href="https://www.instagram.com/cougue.jiyugaoka/" rel="noopener" target="_blank">Instagram</a></div></div>
+</nav>
+<a aria-label="COUGUEトップページ" class="cougue-logo" href="https://www.cougue.com/"><img alt="自由が丘クーゲ ジュエリーショップ" src="assets/shell-20260928/logo.svg"/></a>
+<div class="cougue-header-actions"><form action="https://www.cougue.com/view/search" class="cougue-header-search-form" method="get" role="search"><input aria-label="商品検索" name="search_keyword" placeholder="お探しのものを入力" type="search"/><button aria-label="検索する" type="submit"><img alt="" src="assets/shell-20260928/icon_search.svg"/></button></form><a aria-label="マイページ" class="cougue-icon-link" href="https://www.cougue.com/view/member/mypage"><img alt="" src="assets/shell-20260928/icon_user.svg"/></a><a aria-label="カートを見る" class="cougue-icon-link" href="https://www.cougue.com/view/cart"><img alt="" src="assets/shell-20260928/icon_bag.svg"/></a><a aria-label="お気に入り" class="cougue-icon-link" href="https://www.cougue.com/view/member/favorite"><img alt="" src="assets/shell-20260928/icon_heart.svg"/></a><button aria-controls="cougue-drawer" aria-expanded="false" aria-label="メニューを開く" class="cougue-menu-toggle" data-cougue-menu-toggle="" type="button"><span></span><span></span><span></span></button></div>
+</header>
+<div aria-hidden="true" class="cougue-search-panel" data-cougue-search-panel="" id="cougue-search-panel"><form action="https://www.cougue.com/view/search" class="cougue-drawer-search" method="get" role="search"><input aria-label="商品検索" name="search_keyword" placeholder="お探しのものを入力してください" type="search"/><button aria-label="検索する" type="submit">⌕</button></form></div>
+<div aria-hidden="true" class="cougue-drawer-overlay" data-cougue-drawer-overlay=""><aside aria-label="サイトメニュー" class="cougue-drawer" data-cougue-drawer="" id="cougue-drawer"><button aria-label="メニューを閉じる" class="cougue-drawer-close" data-cougue-drawer-close="" type="button">×</button><form action="https://www.cougue.com/view/search" class="cougue-drawer-search" method="get" role="search"><input aria-label="商品検索" name="search_keyword" placeholder="お探しのものを入力してください" type="search"/><button aria-label="検索する" type="submit">⌕</button></form><a class="cougue-drawer-primary" href="https://www.cougue.com/view/cart">カートを見る</a><a class="cougue-drawer-primary" href="https://www.cougue.com/view/member/login">ログイン</a><h2 class="cougue-drawer-section-title">アイテムカテゴリ</h2><details><summary>アイテム別</summary><div class="cougue-drawer-sub"><a href="https://www.cougue.com/view/category/ct250">ネックレス</a><a href="https://www.cougue.com/view/category/ct251">リング</a><a href="https://www.cougue.com/view/category/ct252">ピアス・イヤリング</a><a href="https://www.cougue.com/view/category/ct254">ブレスレット</a><a href="https://www.cougue.com/view/category/ct255">ペンダント</a></div></details><details><summary>新着アイテム</summary><div class="cougue-drawer-sub"><a href="https://www.cougue.com/view/category/ct5">新着商品一覧</a><a href="https://www.cougue.com/view/category/ct7">新着パール</a></div></details><details><summary>OUTLET</summary><div class="cougue-drawer-sub"><a href="https://www.cougue.com/view/category/ct202">OUTLET</a><a href="https://www.cougue.com/view/category/ct203">パール OUTLET</a></div></details><details><summary>パール</summary><div class="cougue-drawer-sub"><a href="https://www.cougue.com/view/category/ct15">パール</a><a href="https://www.cougue.com/view/category/ct17">パールネックレス</a><a href="https://www.cougue.com/view/category/ct16">パールリング</a><a href="https://www.cougue.com/view/category/ct19">パールピアス・イヤリング</a><a href="https://www.cougue.com/view/category/ct18">ネックレスセット</a><a href="https://www.cougue.com/view/category/ct88">ブレスレット</a></div></details><details><summary>バロックパール商品</summary><div class="cougue-drawer-sub"><a href="https://www.cougue.com/view/category/ct81">バロックパール商品</a><a href="https://www.cougue.com/view/category/ct227">バロックパールネックレス</a><a href="https://www.cougue.com/view/category/ct229">バロックパールピアス・イヤリング</a><a href="https://www.cougue.com/view/category/ct236">ケシパール</a><a href="https://www.cougue.com/view/category/ct246">オイスターパール</a></div></details><details><summary>商品を探す</summary><div class="cougue-drawer-sub"><a href="https://www.cougue.com/view/category/ct137">商品を探す</a><a href="https://www.cougue.com/view/category/ct140">コレクション別</a><a href="https://www.cougue.com/view/category/ct141">パールの色</a><a href="https://www.cougue.com/view/category/ct142">ネックレスの長さ</a></div></details><a class="cougue-drawer-direct" href="https://www.cougue.com/view/news/list">お知らせ</a><a class="cougue-drawer-direct" href="https://www.cougue.com/view/guide">ご利用ガイド</a><a class="cougue-drawer-direct" href="https://www.cougue.com/view/company">このショップについて</a><a class="cougue-drawer-direct" href="#makeshop-common-contact-url">お問い合わせ</a></aside></div>
+<div class="crumb">ホーム ＞ パールネックレス ＞ Avignon（アヴィニョン）</div>
+<main><section class="product-hero" data-slot="hero"><div class="gallery" aria-label="Avignonの商品画像"><div class="thumbs"><button class="thumb active" aria-pressed="true" type="button" data-src="assets/avignon-20260929/7.jpg" data-label="黒のジャケット・二連" aria-label="黒のジャケット・二連を表示"><img class="" src="assets/avignon-20260929/7.jpg" alt="黒のジャケット・二連" loading="lazy"/></button><button class="thumb" aria-pressed="false" type="button" data-src="assets/avignon-20260929/1.jpg" data-label="ホワイト金具・ネックレス全体" aria-label="ホワイト金具・ネックレス全体を表示"><img class="" src="assets/avignon-20260929/1.jpg" alt="ホワイト金具・ネックレス全体" loading="lazy"/></button><button class="thumb" aria-pressed="false" type="button" data-src="assets/avignon-20260929/2.jpg" data-label="ホワイト金具・ロングのライン" aria-label="ホワイト金具・ロングのラインを表示"><img class="" src="assets/avignon-20260929/2.jpg" alt="ホワイト金具・ロングのライン" loading="lazy"/></button><button class="thumb" aria-pressed="false" type="button" data-src="assets/avignon-20260929/3.jpg" data-label="丸みに近いバロックパール" aria-label="丸みに近いバロックパールを表示"><img class="" src="assets/avignon-20260929/3.jpg" alt="丸みに近いバロックパール" loading="lazy"/></button><button class="thumb" aria-pressed="false" type="button" data-src="assets/avignon-20260929/4.jpg" data-label="ホワイト金具・オリジナルトグル" aria-label="ホワイト金具・オリジナルトグルを表示"><img class="" src="assets/avignon-20260929/4.jpg" alt="ホワイト金具・オリジナルトグル" loading="lazy"/></button><button class="thumb" aria-pressed="false" type="button" data-src="assets/avignon-20260929/8.jpg" data-label="黒のジャケット・正面" aria-label="黒のジャケット・正面を表示"><img class="" src="assets/avignon-20260929/8.jpg" alt="黒のジャケット・正面" loading="lazy"/></button><button class="thumb" aria-pressed="false" type="button" data-src="assets/avignon-20260929/9.jpg" data-label="黒のジャケット・三連" aria-label="黒のジャケット・三連を表示"><img class="" src="assets/avignon-20260929/9.jpg" alt="黒のジャケット・三連" loading="lazy"/></button></div><div class="main-photo"><button id="zoom" type="button" aria-label="商品画像を拡大"><img id="mainImage" src="assets/avignon-20260929/7.jpg" alt="黒のジャケットにAvignonを二連で合わせた着用例"/></button><span class="photo-label" id="photoLabel">黒のジャケット・二連</span></div></div><div class="purchase"><p class="eyebrow">AVIGNON / BAROQUE PEARL NECKLACE</p><h1 id="page-title">装いにやわらかさを。<br/>私には、存在感を</h1><p class="product-name">Avignon〈アヴィニョン・ホワイト〉<span>淡水パールホワイト・バロックロングネックレス</span></p><p class="product-code">商品コード：pn699 ／ ホワイト金具</p><div class="price-row"><p class="price">¥44,800</p></div><p class="points"><a href="#looks">着用例を見る</a></p><div class="summary">ほんのりピンクがかった白と、少しぷっくりとしたバロックパールの丸み。いつものTシャツにも、麻のシャツにも、顔まわりにやわらかな明るさを添えます。約125cmを二連、三連と重ねて、その日の服に似合う表情を。シンプルな装いの中で、パールを着けた私の存在感を楽しめる一本です。</div><label class="option-label" for="product-option">金具カラー</label><select id="product-option" disabled><option value="white">ホワイト（こちらの商品）</option></select><div class="quantity-line"><label for="quantity">数量</label><div class="quantity"><button id="minus" type="button" aria-label="数量を減らす">−</button><input id="quantity" type="number" value="1" min="1" max="99" aria-label="数量"/><button id="plus" type="button" aria-label="数量を増やす">＋</button></div></div><button class="cta" id="cart" type="button">カートに入れる</button><button class="favorite-btn" id="favorite" type="button" aria-pressed="false">♡ お気に入りに追加</button><a class="sub-cta" href="#makeshop-common-contact-url">着け方・重さ・個体差について相談する</a><div class="quick-spec"><div><small>長さ</small><strong>約125cm</strong></div><div><small>パールサイズ</small><strong>約7×8mm</strong></div><div><small>素材</small><strong>淡水パール・シルバー925</strong></div><div><small>金具</small><strong>ホワイト</strong></div></div></div></section>
+<section data-slot="reviews" hidden style="display:none"></section>
+<section class="section wide soft" data-slot="reasons" id="looks"><div class="inner"><p class="eyebrow">AVIGNON, IN YOUR STYLE</p><h2>行き先が変わっても、<br/>首元はこれで決まる</h2><p class="section-intro">約125cmの一本を、首に二重・三重に巻いて使います。着ける位置や重ね方で、顔まわりの見え方が変わります。</p><div class="reason-grid"><article class="reason"><img class="" src="assets/avignon-20260929/8.jpg" alt="黒のジャケット・正面" loading="lazy" width="800" height="800"/><div class="reason-copy"><span class="reason-number">01</span><h3>黒のジャケットに二連<br/>初めての打ち合わせへ</h3><p>かっちりした黒の襟元から、白が二重にのぞきます。顔のすぐ下が明るくなるので、初めて会う相手とも構えすぎずに向き合えます。プレゼンや取引先への訪問など、きちんと見せたいけれど着飾りたくはない日に。</p></div></article><article class="reason"><div class="reason-photo-empty" aria-hidden="true"></div><div class="reason-copy"><span class="reason-number">02</span><h3>グレーのニットに三連<br/>週末の美術館へ</h3><p>グレーのニットに、パールの白を三連で。首まわりに集まる珠の丸みが、シンプルな一枚に華やかさを添えます。展示を見て、帰りにお茶へ寄る。そんな休日にも、着慣れたニットとパールで出かける楽しさを。</p></div></article><article class="reason"><div class="reason-photo-empty" aria-hidden="true"></div><div class="reason-copy"><span class="reason-number">03</span><h3>黒のノースリーブにゆったり二連<br/>旅先の夜の食事へ</h3><p>二連をゆるめにとり、胸もとまで垂らします。肌の見える服にパールの縦のラインが加わり、昼と同じ服でも夜の席に合う顔になります。荷物を増やせない旅なら、服を一枚減らして、この一本を。</p></div></article></div></div></section>
+<section class="section wide sand" data-slot="design"><div class="inner story"><img class="story-image" src="assets/avignon-20260929/3.jpg" alt="丸みに近いバロックパール" loading="lazy" width="800" height="800"/><div class="story-copy"><p class="eyebrow">WHY AVIGNON RETURNED</p><h2>5年を経て戻ってきた、<br/>丸みに近いバロック</h2><p>Avignonは人気のロングセラーでしたが、一度姿を消しました。5年を経て戻ってきたこのネックレスのために探していたのは、丸みに近い、少しぷっくりとしたバロックパールです。</p><p>色は、ほんのりピンクがかった白。一粒ずつ少し異なる丸みが、パールの連なりに自然な表情をつくります。肌の近くに置いたときのやわらかな色合いと、ふっくらとした珠の存在感。華やかさがありながら、顔まわりは穏やかな印象に。その両方を楽しめるのが、Avignonの魅力です。</p></div></div></section>
+<section class="section" data-slot="hardware"><div class="inner story"><img class="story-image" src="assets/avignon-20260929/4.jpg" alt="ホワイト金具・オリジナルトグル" loading="lazy" width="800" height="800"/><div class="story-copy"><p class="eyebrow">THE FINISHING TOUCH</p><h2>留め具まで、<br/>見せていい</h2><p>パールネックレスの留め具は、うなじの後ろに隠しておくもの。そう思われがちですが、Avignonの留め具は、輪に棒を通して留めるオリジナルのトグルクラスプです。丸と線だけのすっきりした形が、白いパールの連なりに、少し違う表情を加えます。</p><p>このページの商品はホワイトの金具。白いパールのそばで、金属の輪郭がすっきりと見えます。首の横や胸もとに留め具が来ても、それも装いの一部です。パールだけでなく、金具の形まで含めてAvignonのデザインです。</p><a class="sub-cta" href="https://www.cougue.com/view/item/000000002143">ゴールド金具のAvignonを見る</a></div></div></section>
+<section class="section wide sand" data-slot="selection"><div class="inner detail-split"><img src="assets/sydney/pearl-selection-2-bright-v1.jpg" alt="COUGUEのパールを選定する様子" loading="lazy"/><div class="detail-copy"><p class="eyebrow">THE EYE BEHIND COUGUE</p><h2>そこまでして、<br/>選ぶ人がいる</h2><p>COUGUEのパールを選ぶのは、専務の藤縄航樹です。創業者でありデザイナーである母の仕事を25年間そばで見て、どんな女性に、どんなパールを、どう見せたいのかを理解してきました。</p><p>仕入れ先との30年近い関係があるからこそ、通常は束で扱われるパールも、一本ずつ、一粒ずつ選ぶことができます。けれど、本当に伝えたいのは、その特別扱いではありません。</p><p>立ったまま三時間。日によっては五〜六時間。色、形、テリ、わずかな個体差を見ながら選び続ける。思い描いた女性の姿を形にできるパールを探して、専務はそれを毎回やります。</p><p><strong>クオリティは揃える。でも、個性まで揃えすぎない。</strong></p></div></div></section>
+<section data-slot="lasting-value" hidden style="display:none"></section>
+<section class="section" data-slot="support"><p class="eyebrow">SHOP WITH CONFIDENCE</p><h2>似合うかどうか、<br/>一緒に確かめましょう</h2><div class="trust"><article><h3>この白が、自分に似合うか</h3><p>ほんのりピンクがかった白は、画面の設定によって見え方が変わります。実物を首元に当てて、顔色との相性を鏡で確かめたい方は、自由が丘の店舗へご相談ください。ご来店前に試着品の有無をお問い合わせいただくと安心です。ふだんよく着る服で合わせてみると、より分かりやすくなります。</p></article><article><h3>手持ちの服で、どう着けるか</h3><p>試着のときは「お似合いです」とお伝えするだけで終わらせません。こんなふうにも、こんなふうにも着けられると、お手持ちの服や出かける予定に合わせた使い方まで、一緒に考えます。</p><a href="https://www.cougue.com/html/page2.html">店舗のご案内 →</a></article><article><h3>買ったあとのこと</h3><p>ジュエリーは使い続けるうちに、修理やお手入れが必要になることもあります。自由が丘に33年、同じ場所で店を続けてきました。何年たってもご相談いただけることを大切にしています。</p><a href="https://www.cougue.com/html/page1.html">アフターケアのご案内 →</a></article></div></section>
+<section class="section faq" data-slot="faq"><p class="eyebrow">FAQ / PRODUCT DETAILS</p><h2>Avignonについて</h2><details open=""><summary>バロックの形は、きちんとした服にも合いますか？</summary><p>バロックは、ひと粒ずつ自然にできた形のパールです。Avignonに使っているのは、その中でも丸みに近い、少しぷっくりとしたもの。少し離れて見るとやわらかな丸みが連なって見え、近づくとひと粒ずつの違いが分かります。黒のジャケットに合わせても、白いパールのまとまりを残しながら、かしこまりすぎない表情を楽しめます。形の違いが気になる方は、パールのアップ写真をご覧ください。実物でお確かめになりたい場合も、ご相談いただけます。</p></details><details><summary>二連と三連、どう選べばいいですか？</summary><p>どちらかを選んで買う必要はありません。約125cmの同じ一本を、二重に巻くか三重に巻くかで変えられます。迷ったら、襟ぐりで決めるのがいちばん簡単です。胸もとが開いた服やジャケットの日は二連で縦に長く、首の詰まったニットの日は三連で首まわりに。鏡から一歩離れて、全身で見たときにしっくりくるほうを選んでください。首まわりや服の厚みでも収まりが変わるので、合わせたい服がお決まりでしたら、着け方をご相談ください。</p></details><details><summary>ホワイトとゴールドは、パールの色の違いですか？</summary><p>いいえ、金具の色の違いです。どちらもパールは白です。このページはホワイト金具の商品です。ゴールドの金具をご希望の方は、ゴールド金具の商品ページからお選びください。</p></details><details><summary>商品仕様・サイズ</summary><dl class="specs"><div><dt>商品名</dt><dd>Avignon〈アヴィニョン・ホワイト〉</dd></div><div><dt>商品コード</dt><dd>pn699</dd></div><div><dt>素材</dt><dd>淡水パール・シルバー925</dd></div><div><dt>カラー・形</dt><dd>ホワイト・バロック</dd></div><div><dt>長さ</dt><dd>約125cm</dd></div><div><dt>パールサイズ</dt><dd>約7×8mm</dd></div><div><dt>金具</dt><dd>オリジナルトグル（ホワイト）</dd></div><div><dt>品質表記</dt><dd>AAA（COUGUE公式表記）</dd></div></dl></details></section>
+<section class="final" data-slot="final"><p class="eyebrow">AVIGNON / PN699</p><h2>着け方を変えながら、<br/>私の定番になっていく</h2><p>ジャケットには二連、ニットには三連。その日の服に合わせて楽しむうちに、自分に似合う着け方が見つかる。何度も着けたくなる一本を、これからの装いに。</p><div class="price">¥44,800</div><button class="cta cart-btn" data-cart="" type="button">カートに入れる</button><button class="favorite-btn" data-favorite="" type="button" aria-pressed="false">♡ お気に入りに追加</button></section></main>
+<footer class="cougue-footer"><div class="cougue-footer-inner"><div class="cougue-footer-brand"><a href="https://www.cougue.com/"><img alt="クーゲオンラインショップ" src="assets/shell-20260928/logo.svg"/></a><h2>クーゲオンラインショップ</h2><p>〒152-0035 東京都目黒区自由が丘2-16-18（<a href="https://www.google.com/maps/place/%E8%87%AA%E7%94%B1%E3%81%8C%E4%B8%98+%E3%82%AF%E3%83%BC%E3%82%B2/" rel="noopener" target="_blank">Map</a>）</p><p>Tel：03-5729-0521</p><p>E-mail：info@cougue.com</p></div><nav aria-label="サポート" class="cougue-footer-nav"><h2>Support</h2><a href="https://www.cougue.com/view/guide">ご利用ガイド</a><a href="https://www.cougue.com/html/page1.html">アフターケア</a><a href="https://www.cougue.com/html/page34.html">ギフト包装について</a><a href="https://www.cougue.com/html/page6.html">よくある質問</a></nav><nav aria-label="アカウント" class="cougue-footer-nav"><h2>Account</h2><a href="https://www.cougue.com/view/cart">カートを見る</a><a href="https://www.cougue.com/view/member/login">ログイン・新規登録</a><a href="https://www.cougue.com/ssl/popup_mailmagazine.html?db=kokifujinawa">メルマガ登録</a></nav><nav aria-label="会社情報" class="cougue-footer-nav"><h2>Company</h2><a href="https://www.cougue.com/html/page7.html">プライバシーポリシー</a><a href="https://www.cougue.com/view/company">会社概要</a><a href="https://www.cougue.com/html/page18.html">採用情報</a><a href="https://www.cougue.com/html/ordercontract.html">特定商取引に基づく表記</a></nav></div><div class="cougue-footer-copy">Copyright (C) 2025 archvision Co.,Ltd. All Rights Reserved.</div></footer>
+<div class="sticky-buy"><span class="sticky-price">¥44,800</span><button aria-label="お気に入りに追加" aria-pressed="false" class="favorite-btn" data-favorite="" type="button">♡</button><button class="cta cart-btn" data-cart="" type="button">カートに入れる</button></div>
+<script src="assets/cougue-shell.js"></script>
+
+<dialog aria-label="商品画像の拡大" id="image-dialog"><button id="close-dialog" type="button">閉じる ×</button><img alt="" id="zoom-image"/></dialog><dialog aria-labelledby="purchase-dialog-title" id="purchase-dialog"><button id="purchase-close" type="button">閉じる ×</button><h2 id="purchase-dialog-title">購入は公式ページで</h2><p>こちらは確認用モックです。カートへの追加は行っていません。数量は、公式ページで改めてお選びください。</p><a class="cta" href="https://www.cougue.com/view/item/000000002144">公式商品ページへ進む</a></dialog><script>
+const mainImage=document.getElementById('mainImage');
+document.querySelectorAll('.thumb').forEach(b=>b.onclick=()=>{mainImage.src=b.dataset.src;mainImage.alt=b.querySelector('img').alt;document.getElementById('photoLabel').textContent=b.dataset.label;document.querySelectorAll('.thumb').forEach(x=>{x.classList.toggle('active',x===b);x.setAttribute('aria-pressed',String(x===b))})});
+const zoomDialog=document.getElementById('image-dialog');document.getElementById('zoom').onclick=()=>{const im=document.getElementById('zoom-image');im.src=mainImage.src;im.alt=mainImage.alt;zoomDialog.showModal()};document.getElementById('close-dialog').onclick=()=>zoomDialog.close();
+const q=document.getElementById('quantity');function clamp(){q.value=Math.max(1,Math.min(99,parseInt(q.value)||1))}document.getElementById('minus').onclick=()=>{clamp();q.value=Math.max(1,+q.value-1)};document.getElementById('plus').onclick=()=>{clamp();q.value=Math.min(99,+q.value+1)};q.onchange=clamp;
+document.querySelectorAll('#favorite,[data-favorite]').forEach(b=>b.onclick=()=>{const on=b.getAttribute('aria-pressed')!=='true';document.querySelectorAll('#favorite,[data-favorite]').forEach(x=>{x.setAttribute('aria-pressed',String(on));x.textContent=x.closest('.sticky-buy')?(on?'♥':'♡'):(on?'♥ お気に入りに追加済み':'♡ お気に入りに追加');x.setAttribute('aria-label',on?'お気に入りに追加済み':'お気に入りに追加');x.title='モック内の表示確認です。公式サイトには保存されません。'})});
+const pd=document.getElementById('purchase-dialog');document.querySelectorAll('#cart,[data-cart]').forEach(b=>b.onclick=()=>pd.showModal());document.getElementById('purchase-close').onclick=()=>pd.close();
+</script></body>
+</html>
+
